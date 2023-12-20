@@ -1,0 +1,34 @@
+<section class="s-login">
+  <form [formGroup]="applyForm" (submit)="logIn()" class="login-form">
+    <p class="form-heading">Login</p>
+    <input mdbInput type="text" id="email" class="form-control" name="email" formControlName="email" #useremail
+      required />
+    <label mdbLabel class="form-label" for="email">Email</label>
+    <input mdbInput type="password" id="password" class="form-control" name="password" formControlName="password"
+      #userpassword required />
+    <label mdbLabel class="form-label" for="password">Password</label>
+    <div class="btn-block">
+      <button mdbRipple type="submit" class="btn btn-primary btn-block btn-login">Log in</button>
+    </div>
+  </form>
+  <div class="error-message">
+    <div *ngIf="applyForm.get('email')?.hasError('required')">
+      Please enter a login email.
+    </div>
+    <div *ngIf="applyForm.get('email')?.hasError('email')">
+      The login is invalid.
+    </div>
+    <div *ngIf="applyForm.get('password')?.hasError('required')">
+      Please enter a password.
+    </div>
+    <div *ngIf="applyForm.get('password')?.hasError('minlength')">
+      Your password isn't strong enough: {{ applyForm.get('password')?.getError('minlength') }}
+    </div>
+    <div *ngIf="applyForm.get('password')?.hasError('uppercaseLowercase')">
+      Your password isn't strong enough: {{ applyForm.get('password')?.getError('uppercaseLowercase') }}
+    </div>
+    <div *ngIf="applyForm.get('password')?.hasError('specialCharacter')">
+      Your password isn't strong enough: {{ applyForm.get('password')?.getError('specialCharacter') }}
+    </div>
+  </div>
+</section>

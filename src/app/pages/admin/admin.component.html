@@ -1,0 +1,55 @@
+<section class="s-admin">
+  <div class="admin-panel">
+    <h3 class="panel-heading">Create new card</h3>
+    <form [formGroup]="createCardForm" (submit)="createNewCard()">
+      <label mdbLabel class="form-label" for="pTitle">Title</label>
+      <input mdbInput type="text" id="pTitle" class="form-control p-input" name="title" required formControlName="title"
+        [(ngModel)]="title" />
+      <label mdbLabel class="form-label" for="pDescr">Description</label>
+      <input mdbInput type="text" id="pDescr" class="form-control p-input" name="descr" required
+        formControlName="description" [(ngModel)]="description" />
+      <label mdbLabel class="form-label" for="pImg">Poster Image Link</label>
+      <input mdbInput type="text" id="pImg" class="form-control p-input" name="img" required formControlName="img"
+        [(ngModel)]="img" />
+      <label mdbLabel class="form-label" for="pVideo">Link video</label>
+      <input mdbInput type="text" id="pVideo" class="form-control p-input" name="video" required formControlName="video"
+        [(ngModel)]="video" />
+      <label mdbLabel class="form-label" for="pDate">Date</label>
+      <input mdbInput type="date" id="pDate" class="form-control p-input" name="date" required formControlName="date" />
+      <div class="input-group" *ngFor="let input of inputs; let i = index">
+        <input type="text" placeholder="Add a new tag">
+      </div>
+      <button (click)="addTag()" [disabled]="inputs.length === 5">Add Input</button>
+      <div class="btns-group d-flex flex-row justify-content-between">
+        <button mdbRipple type="reset" class="btn btn-primary btn-reset" (click)="resetForm()">Reset</button>
+        <button mdbRipple type="submit" class="btn btn-primary btn-create">Create Card</button>
+      </div>
+    </form>
+  </div>
+  <div class="error-message">
+    <div *ngIf="createCardForm.get('title')?.hasError('required')">
+      Please enter a title.
+    </div>
+    <div *ngIf="createCardForm.get('title')?.hasError('minlength')">
+      The title is too short.
+    </div>
+    <div *ngIf="createCardForm.get('title')?.hasError('maxLength')">
+      The title is too long.
+    </div>
+    <div *ngIf="createCardForm.get('description')?.hasError('maxLength')">
+      the description is too long.
+    </div>
+    <div *ngIf="createCardForm.get('img')?.hasError('required')">
+      Please enter a link to the image.
+    </div>
+    <div *ngIf="createCardForm.get('video')?.hasError('required')">
+      Please enter a link to the video.
+    </div>
+    <div *ngIf="createCardForm.get('date')?.hasError('required')">
+      Please enter a creation date.
+    </div>
+    <div *ngIf="createCardForm.get('date')?.hasError('futureDate')">
+      The date is invalid.
+    </div>
+  </div>
+</section>

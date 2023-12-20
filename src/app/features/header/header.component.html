@@ -1,0 +1,26 @@
+<header class="header">
+  <nav class="header-top">
+    <div class="logo">
+      <img src="../../../assets/images/youtube-logo.svg" alt="youtube logo" />
+    </div>
+    <form class="search__form">
+      <mdb-form-control>
+        <input mdbInput type="text" id="typeText" class="form-control" class="input-search" placeholder="Search..."
+          #input (input)="showValue()" />
+      </mdb-form-control>
+      <a class="btn text-white" style="background-color: #0082ca;" href="#!" role="button" mdbRipple
+        (click)="showContent()">
+        <i class="fas fa-sliders-h"></i>
+      </a>
+    </form>
+    <div class="login">
+      <p>{{loginName}}</p>
+      <a class="btn text-white btn-log" style="background-color: #0082ca;" href="/login" role="button" mdbRipple>
+        <span>{{logIcon}}</span>
+      </a>
+    </div>
+  </nav>
+  <div *ngIf="showFilter">
+    <app-filter></app-filter>
+  </div>
+</header>

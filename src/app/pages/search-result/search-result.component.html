@@ -1,0 +1,31 @@
+<section class="s-results">
+  <ng-container *ngIf="searchTerm">
+    <div *ngFor="let item of this.responseData">
+      <div class="card" data-id="{{item.id.videoId}}">
+        <img src={{item.snippet.thumbnails.medium.url}} class="img-fluid poster" />
+        <div class="stats">
+          <i class="fas fa-eye s-count">n/a</i>
+          <i class="fas fa-heart s-count">n/a</i>
+          <i class="fas fa-heart-broken s-count">n/a</i>
+          <i class="fas fa-comment-alt s-count">n/a</i>
+        </div>
+        <div class="card-body c-text">
+          <h5 class="card-title text-right c-title">{{item.snippet.title}}</h5>
+          <a [routerLink]="[ '/details/', item.id.videoId]" class="btn btn-primary btn-more">More...</a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="newCardsArray$ | async as newCardsArray$">
+    <div *ngFor="let card of newCardsArray$">
+      <div class="card" data-id="{{card.id}}">
+        <img src={{card.img}} class="img-fluid poster" />
+        <div class="card-body c-text">
+          <h5 class="card-title text-right c-title">{{card.title}}</h5>
+          <a [routerLink]="[ '/details/', card.id]" class="btn btn-primary btn-more">More...</a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</section>
